@@ -71,16 +71,20 @@ public class StatusPanel : MonoBehaviour
 
     public void Go()
     {
-        if(InputRoomName.text == "")
+        if (InputRoomName.text == "")
         {
             SetStatus("Need room name");
         }
         else
         {
-            if(type == PanelType.Join)
-                SetStatus("Finding");
+            if (type == PanelType.Join)
+            {
+                Home.Instanst.Join(InputRoomName.text);
+            }
             if (type == PanelType.Cretae)
-                SetStatus("Creating");
+            {
+                Home.Instanst.Create(InputRoomName.text);
+            }
         }
     }
 }

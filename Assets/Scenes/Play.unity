@@ -330,6 +330,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61bb5edfb2fb8014e87c251d6f874c8b, type: 3}
+--- !u!114 &366549579 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6997625452243457739, guid: 61bb5edfb2fb8014e87c251d6f874c8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 366549578}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0aea7389fc46fa429ac821605ca8ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &396852730 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1405091889856322603, guid: 0c6f7f157667193449dfcc680f57d1de,
@@ -460,6 +472,7 @@ GameObject:
   - component: {fileID: 1018204991}
   - component: {fileID: 1018204990}
   - component: {fileID: 1018204994}
+  - component: {fileID: 1018204995}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -563,12 +576,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53aa81b14eca430468b3f88ec6fbfa6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: []
+  playerStats:
+  - {fileID: 5253857333239053645}
+  - {fileID: 366549579}
   mydeck: {fileID: 509417483}
   gameState: 0
   OpponentCard: {fileID: 396852732}
   MyCard: {fileID: 0}
-  Selected: 0
+  MySelected: 0
+  OpponentSelect: 0
+  PhotonView: {fileID: 1018204995}
+--- !u!114 &1018204995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018204989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1276746165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -930,7 +969,7 @@ PrefabInstance:
     - target: {fileID: 1405091889856322603, guid: 0c6f7f157667193449dfcc680f57d1de,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1554147962457785322, guid: 0c6f7f157667193449dfcc680f57d1de,
         type: 3}
@@ -1689,3 +1728,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61bb5edfb2fb8014e87c251d6f874c8b, type: 3}
+--- !u!114 &5253857333239053645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6997625452243457739, guid: 61bb5edfb2fb8014e87c251d6f874c8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5253857333239053644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0aea7389fc46fa429ac821605ca8ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

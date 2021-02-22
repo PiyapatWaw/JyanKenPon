@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Photon.Pun;
 
 public enum GameState
 {
@@ -10,14 +11,15 @@ public enum GameState
     Battle,
     TakeDamage
 }
-public class GameControler : MonoBehaviour
+public class GameControler : MonoBehaviourPunCallbacks
 {
     public static GameControler Instanst;
     public PlayerStat[] playerStats;
     public Deck mydeck;
     public GameState gameState;
     public Card OpponentCard,MyCard;
-    public bool Selected;
+    public bool MySelected,OpponentSelect;
+    public PhotonView PhotonView;
 
     void Awake()
     {
@@ -26,6 +28,12 @@ public class GameControler : MonoBehaviour
 
     private void Start()
     {
+        int i = 0;
+        foreach (var playerInfo in PhotonNetwork.CurrentRoom.Players)
+        {
+            playerStats[i].Name.text = playerInfo.Value.NickName;
+            i++;
+        }
         StartCoroutine(Play());
     }
 
@@ -36,13 +44,13 @@ public class GameControler : MonoBehaviour
 
     public IEnumerator Play()
     {
-        while (playerStats.Where(w=> w.hp<=0).ToList().Count == 0)
+        while (playerStats.Where(w => w.hp > 0).ToList().Count != 0)
         {
             gameState = GameState.Select;
-            yield return new WaitUntil(() => Selected);
-            //set select to server
-            //wait server sent opponent select;
+            yield return new WaitUntil(() => MySelected);
+            yield return new WaitUntil(() => OpponentSelect);
             yield return StartCoroutine(OpponentCard.show());
+            break;
         }
     }
 
@@ -82,5 +90,20 @@ public class GameControler : MonoBehaviour
         }
 
         MyCard = null;
+    }
+
+
+    public void SentSelectToOpponent(string select)
+    {
+        photonView.RPC("SetOpponentCard", RpcTarget.Others, select);
+    }
+
+
+    [PunRPC]
+    void SetOpponentCard(string select)
+    {
+        Debug.LogError("Opponent Select " + select);
+        OpponentCard.Text.text = select;
+        OpponentSelect = true;
     }
 }

@@ -6,17 +6,14 @@ using TMPro;
 
 public class PlayerStat : MonoBehaviour
 {
-    int maxHp;
+    int maxHp = 3;
     public int hp;
     public Image HpBar;
     public TextMeshProUGUI Name;
 
-    void Start()
+    private void Awake()
     {
-        maxHp = 3;
         hp = maxHp;
-        //recive
-        Name.text = "";
     }
 
 

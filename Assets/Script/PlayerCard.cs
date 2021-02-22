@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Realtime;
 
 public class PlayerCard : MonoBehaviour
 {
+    public Player Mydata;
     public TextMeshProUGUI Name;
     public bool Host;
 
-    public void SetData(string name,bool IsHost)
+    public void SetData(Player data)
     {
-        Name.text = name;
-        Host = IsHost;
+        Mydata = data;
+        Name.text = data.NickName;
+        Host = data.IsMasterClient;
     }
 }

@@ -19,9 +19,9 @@ public class Card : MonoBehaviour
 
     public void Selected()
     {
-        GameControler.Instanst.Selected = true;
+        GameControler.Instanst.MySelected = true;
         GameControler.Instanst.MyCard = this;
-
+        GameControler.Instanst.SentSelectToOpponent(Name);
     }
 
     public void Click()

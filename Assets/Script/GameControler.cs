@@ -129,8 +129,7 @@ public class GameControler : MonoBehaviourPunCallbacks
         { SentPlayerTakeDamage(loser); }
         else
         {
-            TakeDamageComplete = true;
-            Debug.LogError("Draw");
+            SentDraw();
         }
         MyCard = null;
     }
@@ -143,17 +142,22 @@ public class GameControler : MonoBehaviourPunCallbacks
 
     public void SentSelectToOpponent(string select)
     {
-        photonView.RPC("SetOpponentCard", RpcTarget.Others, select);
+        photonView.RPC("SetOpponentCard", RpcTarget.OthersBuffered, select);
     }
 
     public void SentPlayerTakeDamage(string select)
     {
-        photonView.RPC("PlayerTakeDamage", RpcTarget.All, select);
+        photonView.RPC("PlayerTakeDamage", RpcTarget.AllBuffered, select);
     }
 
     public void SentPlayerReady()
     {
         photonView.RPC("PlayerReady", RpcTarget.AllBuffered);
+    }
+
+    public void SentDraw()
+    {
+        photonView.RPC("DrawResult", RpcTarget.AllBuffered);
     }
 
 
@@ -177,5 +181,12 @@ public class GameControler : MonoBehaviourPunCallbacks
     {
         Debug.LogError("PlayerReady Update");
         UpdatePlayerCount();
+    }
+
+    [PunRPC]
+    void DrawResult()
+    {
+        Debug.LogError("Draw");
+        TakeDamageComplete = true;
     }
 }

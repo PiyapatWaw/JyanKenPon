@@ -21,9 +21,13 @@ public class Home : MonoBehaviourPunCallbacks
         loading = false;
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
-        PhotonNetwork.ConnectUsingSettings();
+        if (PhotonNetwork.IsConnected)
+            PhotonNetwork.Disconnect();
+
+        yield return new WaitUntil(()=>!PhotonNetwork.IsConnected);
+            PhotonNetwork.ConnectUsingSettings();
     }
 
     public void BeforeLoadScene()

@@ -6,8 +6,8 @@ using TMPro;
 
 public class PlayerStat : MonoBehaviour
 {
-    int maxHp = 3;
-    public int hp;
+    float maxHp = 3;
+    public float hp;
     public Image HpBar;
     public TextMeshProUGUI Name;
 

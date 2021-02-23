@@ -19,6 +19,8 @@ public class Card : MonoBehaviour
 
     public void Selected()
     {
+        Debug.LogError("My Select " + Name);
+        GameControler.Instanst.mydeck.MyChoose();
         GameControler.Instanst.MySelected = true;
         GameControler.Instanst.MyCard = this;
         GameControler.Instanst.SentSelectToOpponent(Name);
@@ -52,7 +54,7 @@ public class Card : MonoBehaviour
         }
     }
 
-    IEnumerator Move(Vector2 Target,float maxT,System.Action Callback = null)
+    public IEnumerator Move(Vector2 Target,float maxT,System.Action Callback = null)
     {
         float t = 0;
         Vector2 Origin = transform.position;
@@ -76,6 +78,17 @@ public class Card : MonoBehaviour
         while (t < 1)
         {
             t += Time.deltaTime;
+            CanvasGroup.alpha = t;
+            yield return null;
+        }
+    }
+
+    public IEnumerator hide()
+    {
+        float t = 1;
+        while (t > 0)
+        {
+            t -= Time.deltaTime;
             CanvasGroup.alpha = t;
             yield return null;
         }

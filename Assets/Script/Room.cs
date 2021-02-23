@@ -14,10 +14,11 @@ namespace JyanKenPon
         public GameObject GoBTN;
         public Player Mydata;
         public TextMeshProUGUI RoomName;
-
-
+        public GameObject LoadingObj;
+        bool loading;
         private IEnumerator Start()
         {
+            loading = false;
             yield return new WaitUntil(()=>PhotonNetwork.IsConnected);
             Mydata = PhotonNetwork.LocalPlayer;
             SetUpPlayer();
@@ -27,6 +28,8 @@ namespace JyanKenPon
 
         public void SetUpPlayer()
         {
+            if (loading)
+                return;
             foreach (var item in playerCards)
             {
                 item.gameObject.SetActive(false);
@@ -48,6 +51,8 @@ namespace JyanKenPon
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
+            LoadingObj.SetActive(true);
+            loading = true;
             PhotonNetwork.LoadLevel("Play");
         }
 

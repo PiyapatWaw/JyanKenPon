@@ -1743,6 +1743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StatusPanel: {fileID: 1297207892}
   PlayerName: {fileID: 1133703842}
+  gameVersion: 
 --- !u!1 &1297207888
 GameObject:
   m_ObjectHideFlags: 0

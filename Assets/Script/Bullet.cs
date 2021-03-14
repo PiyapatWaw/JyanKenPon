@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Vector3 Translate;
+    public float speed;
+    public bool IsShoot;
     void Start()
     {
         
@@ -13,11 +15,13 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(IsShoot)
+        transform.Translate(Translate * speed * Time.deltaTime);
     }
 
     public virtual void Shoot()
     {
-
+        Translate = Vector3.forward;
+        IsShoot = true;
     }
 }

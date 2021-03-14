@@ -7,14 +7,19 @@ public class Gun : MonoBehaviour
     public Bullet Bullet;
     public ParticleSystem Explosion;
     public Transform[] AllBulletOut;
-    public float firerate;
+    public float firerate,Magazine;
+    public UIcontrol ui;
+    [SerializeField]
+    private int MaxBullet;
+    private Coroutine ReloadCoroutine;
+
+    [SerializeField]
     int BulletOutIndex;
-    Coroutine FireBehavior;
-    bool IsFire;
+    public bool IsFire;
     
     void Start()
     {
-        
+        Magazine = MaxBullet;
     }
 
     public void StartFire()
@@ -27,14 +32,32 @@ public class Gun : MonoBehaviour
         IsFire = false;
     }
 
-    IEnumerator Fire()
+    public IEnumerator Fire()
     {
-        while (IsFire)
+        if (ReloadCoroutine != null)
+            StopCoroutine(ReloadCoroutine);
+        while (IsFire&& Magazine>0)
         {
             Bullet BC = Instantiate(Bullet);
             BC.transform.eulerAngles = AllBulletOut[BulletOutIndex].eulerAngles;
+            BC.transform.position = AllBulletOut[BulletOutIndex].position;
             BC.Shoot();
-            BulletOutIndex = BulletOutIndex == AllBulletOut.Length-1? BulletOutIndex+=1 : 0;
+            BulletOutIndex++;
+            if (BulletOutIndex >= AllBulletOut.Length - 1)
+                BulletOutIndex = 0;
+            Magazine--;
+            ui.UpdateBulletBar(MaxBullet,Magazine);
+            yield return new WaitForSeconds(firerate);
+        }
+        ReloadCoroutine = StartCoroutine(Reload());
+    }
+
+    public IEnumerator Reload()
+    {
+        while (Magazine < MaxBullet)
+        {
+            Magazine++;
+            ui.UpdateBulletBar(MaxBullet, Magazine);
             yield return new WaitForSeconds(firerate);
         }
     }

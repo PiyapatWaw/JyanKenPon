@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class BattleTest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static BattleTest Instanst;
+    public Gun[] Allgun;
+    public Transform[] CamerPoint;
+    public UIcontrol UI;
+
+    private void Awake()
     {
-        
+        Instanst = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

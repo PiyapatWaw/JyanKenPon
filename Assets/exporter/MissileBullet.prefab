@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 3737391087089550130}
   - component: {fileID: 3591637553914922298}
   - component: {fileID: 3598560000116842654}
+  - component: {fileID: -5916138638763869241}
   m_Layer: 14
   m_Name: MissileBullet
   m_TagString: bullet
@@ -5339,8 +5340,65 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3539543583694829944}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.0425415, y: 2.402979, z: 5.5665207}
   m_Center: {x: -0.12310791, y: -0.059500694, z: 2.9692192}
+--- !u!114 &-5916138638763869241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539543583694829944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b682c61779a394e48b2d4105197f749f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Translate: {x: 0, y: 0, z: 0}
+  speed: 20
+  IsShoot: 0
+  Explosion: {fileID: 19800012, guid: a4a6d98db330a49dcb707d5f3d612b12, type: 3}
+  BoxCollider: {fileID: 0}
+  myGun: {fileID: 0}
+  Target: {fileID: 0}
+  bulletout: {x: 0, y: 0, z: 0}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0083351135
+      value: 0.0070762634
+      inSlope: 0.9617295
+      outSlope: 0.9617295
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.50423527
+      value: 0.50003034
+      inSlope: -0.018167853
+      outSlope: -0.018167853
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9957986
+      value: 0.009418076
+      inSlope: -0.99806523
+      outSlope: -0.99806523
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxt: 0
+  t: 0
+  startpos: {x: 0, y: 0, z: 0}
+  beforepos: {x: 0, y: 0, z: 0}

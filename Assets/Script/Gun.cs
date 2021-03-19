@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Gun : MonoBehaviour
@@ -41,15 +42,21 @@ public class Gun : MonoBehaviour
             Bullet BC = Instantiate(Bullet);
             BC.transform.eulerAngles = AllBulletOut[BulletOutIndex].eulerAngles;
             BC.transform.position = AllBulletOut[BulletOutIndex].position;
+            BC.SetGun(this, BattleTest.Instanst.Allgun.Where(w => w != this).FirstOrDefault(), AllBulletOut[BulletOutIndex].position);
             BC.Shoot();
             BulletOutIndex++;
-            if (BulletOutIndex >= AllBulletOut.Length - 1)
+            if (BulletOutIndex >= AllBulletOut.Length)
                 BulletOutIndex = 0;
             Magazine--;
             ui.UpdateBulletBar(MaxBullet,Magazine);
             yield return new WaitForSeconds(firerate);
         }
         ReloadCoroutine = StartCoroutine(Reload());
+    }
+
+    public virtual void CreateBullet()
+    {
+
     }
 
     public IEnumerator Reload()
